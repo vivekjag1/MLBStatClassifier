@@ -1,0 +1,12 @@
+{
+    "name": "pitchclassifier",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+        "start:frontend": "cd apps/frontend && npm run dev",
+        "start:backend": "cd apps/backend && flask run"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}
