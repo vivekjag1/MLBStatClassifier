@@ -20,9 +20,7 @@ class Pitch(db.Model):
             "releaseSpeed": self.releaseSpeed,
             "spinRate": self.spinRate, 
             "movementInches": self.movementInches, 
-            "alanActiveSpinPct": self.alanActiveSpinPct, 
             "activeSpin": self.activeSpin, 
-            "hawkeyeMeasured": self.hawkeyeMeasured, 
             "movementInferred": self.movementInferred
 
         }
