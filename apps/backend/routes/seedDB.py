@@ -3,7 +3,6 @@ import numpy as np
 
 seedDatabase = Blueprint('seedDB', __name__)
 @seedDatabase.route('/seedDB', methods=['GET'])
-
 def parseFile(): 
 
     ''' 
@@ -26,8 +25,23 @@ def parseFile():
         #have to handle the first, second, and last items 
         #last 
         lastItem = pitch[-1]
-
         thisRow[-1] = thisRow[-1].replace('\n', '')
+          #first
+        # thisRow[0] = thisRow[0].replace('')
+        thisRow[1] = thisRow[1].replace("\"", '')
+        thisRow[2] = thisRow[2].replace("\"", '').strip()
+
         splitArray.append(thisRow[1:])
-    print(allPitches)
+
+      
+
+
+
+
+
+    # print(allPitches)
+
+
+
+
     return jsonify(splitArray)
