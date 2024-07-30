@@ -19,30 +19,15 @@ def parseFile():
 
     splitArray = []
     rowLen = len(allPitches[1])
+
     for pitch in allPitches:
         thisRow = np.zeros(rowLen)
         thisRow = pitch.split(',')
-          #last 
+        #have to handle the first, second, and last items 
+        #last 
+        lastItem = pitch[-1]
+
+        thisRow[-1] = thisRow[-1].replace('\n', '')
         splitArray.append(thisRow[1:])
-
-
-
-
-
-       
-
-
-
-
-        #do some processing on first, second, and last items
-
-  
-
-
-
-
-
-
-
     print(allPitches)
     return jsonify(splitArray)
