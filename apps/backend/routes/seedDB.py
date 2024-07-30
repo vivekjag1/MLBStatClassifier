@@ -4,8 +4,9 @@ seedDatabase = Blueprint('seedDB', __name__)
 @seedDatabase.route('/seedDB', methods=['GET'])
 def parseFile(): 
     from server import db
-    from models.schema import Player 
+    from models.schema import Player, Pitch
     count = db.session.query(Player).count()
+    #this route should ONLY run once to prevent PK collisions. 
     if(count > 0): 
         message = {
             "message":"Database is already seeded!"
@@ -31,17 +32,32 @@ def parseFile():
         thisRow[2] = thisRow[2].replace("\"", '').strip()
         splitArray.append(thisRow[1:])
     #now we need to make a list of all the pitchers 
-    pitchers = []
-    tempArray = splitArray.copy()
-    for pitch in tempArray:
+    pitchArray = np.array(splitArray.copy())
+    ids = []
+    for pitch in pitchArray:
         pitcherName =  pitch[1] + ' ' + pitch[0]
-        if(pitcherName in pitchers): 
-            pass 
-        else:
-            playerID = pitch[2]
-            handedness = pitch[3]
-            newPlayer = Player(playerID = playerID, name = pitcherName, handedness = handedness)
-            pitchers.append(pitcherName)
-            db.session.add(newPlayer)
-            db.session.commit()
+        playerID = pitch[2]
+        if(playerID in ids): 
+            continue
+        else: 
+            ids.append(playerID)
+        handedness = pitch[3]         
+        newPlayer = Player(playerID = playerID, name = pitcherName, handedness = handedness)
+        db.session.add(newPlayer)
+    db.session.commit()
+    i = 0
+    for pitch in pitchArray: 
+        pitcherName =  pitch[1] + ' ' + pitch[0]
+        pitchType = pitch[4]
+        releaseSpeed = pitch[6]
+        spinRate = pitch[7]
+        movementInches = pitch[8]
+        alanActiveSpinPct = pitch[9]
+        activeSpin = pitch[10]
+        hawkeyeMeasured = pitch[11]
+        movementInferred = pitch[12]
+        newPitch = Pitch(pitchID = i, pitcherName = pitcherName, pitchType = pitchType, releaseSpeed = releaseSpeed, spinRate = spinRate, movementInches = movementInches, alanActiveSpinPct = alanActiveSpinPct, activeSpin = activeSpin, hawkeyeMeasured = hawkeyeMeasured, movementInferred = movementInferred)
+        db.session.add(newPitch)
+        i += 1
+    db.session.commit()
     return jsonify(splitArray)
