@@ -18,7 +18,15 @@ class Pitch(db.Model):
         return { 
             "pitchID": self.pitchID, 
             "pitcherName": self.pitcherName, 
-            "pitchType": self.pitchType
+            "pitchType": self.pitchType, 
+            "releaseSpeed": self.releaseSpeed,
+            "spinRate": self.spinRate, 
+            "movementInches": self.movementInches, 
+            "alanActiveSpinPct": self.alanActiveSpinPct, 
+            "activeSpin": self.activeSpin, 
+            "hawkeyeMeasured": self.hawkeyeMeasured, 
+            "movementInferred": self.movementInferred
+
         }
 class Player(db.Model):
     __tablename__ = "Player"
@@ -28,4 +36,11 @@ class Player(db.Model):
     pitches = db.relationship('Pitch', backref='Player')
     def __repr__(self):
         return f'<Pitcher {self.name}>'
+    def toDict(self): 
+        return{
+            "playerID": self.playerID, 
+            "name": self.name, 
+            "handedness": self.handedness
+        }
+    
     
