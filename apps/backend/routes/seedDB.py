@@ -48,7 +48,7 @@ def parseFile():
     i = 0
     for pitch in pitchArray: 
         pitcherName =  pitch[1] + ' ' + pitch[0]
-        pitchType = pitch[4]
+        pitchType = pitch[13]
         releaseSpeed = pitch[6]
         spinRate = pitch[7]
         movementInches = pitch[8]

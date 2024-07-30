@@ -14,6 +14,12 @@ class Pitch(db.Model):
     movementInferred = db.Column(db.Float)
     def __repr__(self):
         return f'<Pitch from {self.pitcherName}>'
+    def toDict(self): 
+        return { 
+            "pitchID": self.pitchID, 
+            "pitcherName": self.pitcherName, 
+            "pitchType": self.pitchType
+        }
 class Player(db.Model):
     __tablename__ = "Player"
     playerID = db.Column(db.Integer, unique=True, primary_key = True)
