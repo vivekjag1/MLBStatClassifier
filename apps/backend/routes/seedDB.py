@@ -4,18 +4,15 @@ import numpy as np
 seedDatabase = Blueprint('seedDB', __name__)
 @seedDatabase.route('/seedDB', methods=['GET'])
 def parseFile(): 
-
     ''' 
     1: read in .csv file
+    2: create a pitches table with all of the info in the .csv (for now, may choose to ignore certain fields later, and enter the )
     '''
     with open('./data/allPitches2024.csv') as f: 
         allPitches = [i for i in f.readlines() if i!=',']
-
     allPitches = np.array(allPitches)
     allPitches = allPitches[1:]
-
     #now we need to split into individual lines 
-
     splitArray = []
     rowLen = len(allPitches[1])
 
@@ -32,16 +29,4 @@ def parseFile():
         thisRow[2] = thisRow[2].replace("\"", '').strip()
 
         splitArray.append(thisRow[1:])
-
-      
-
-
-
-
-
-    # print(allPitches)
-
-
-
-
     return jsonify(splitArray)
