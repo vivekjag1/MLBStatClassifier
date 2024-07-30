@@ -8,9 +8,7 @@ class Pitch(db.Model):
     releaseSpeed = db.Column(db.Float )
     spinRate = db.Column(db.Float)
     movementInches = db.Column(db.Float)
-    alanActiveSpinPct = db.Column(db.Float)
     activeSpin = db.Column(db.Float)
-    hawkeyeMeasured = db.Column(db.Float)
     movementInferred = db.Column(db.Float)
     def __repr__(self):
         return f'<Pitch from {self.pitcherName}>'
