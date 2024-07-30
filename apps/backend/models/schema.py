@@ -19,5 +19,7 @@ class Player(db.Model):
     playerID = db.Column(db.Integer, unique=True, primary_key = True)
     name = db.Column(db.String, unique = True)
     handedness = db.Column(db.String)
+    pitches = db.relationship('Pitch', backref='Player')
     def __repr__(self):
         return f'<Pitcher {self.name}>'
+    
