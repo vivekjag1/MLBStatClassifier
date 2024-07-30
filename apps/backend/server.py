@@ -1,22 +1,24 @@
-from flask import Flask
-
-api = Flask(__name__)
+from flask import Flask, jsonify 
+from flask_sqlalchemy import SQLAlchemy
+import numpy as np 
+from configORM import ConfigORM
 from myRoute import myRoute
 from routes.exampleRoute import exampleRoute
+from routes.seedDB import seedDatabase
+db = SQLAlchemy()
+def createApp(): 
+    app = Flask(__name__)
+    app.config.from_object(ConfigORM)
+    db.init_app(app)
+    app.register_blueprint(myRoute, url_prefix='/api')
+    app.register_blueprint(exampleRoute, url_prefix='/api')
+    app.register_blueprint(seedDatabase, url_prefix='/api')
+    with app.app_context(): 
+        from models.schema import Player, Pitch 
+        db.create_all()
+    
+    return app 
 
-
-
-
-
-api.register_blueprint(myRoute, url_prefix='/api')
-
-api.register_blueprint(exampleRoute, url_prefix='/api')
-
-@api.route('/health')
-def healthCheck():
-    response = {
-        "message":"backend healthy!!"
-    }
-    return response
-if __name__ == '__main__':
-    api.run(debug=True)
+app = createApp()
+if __name__ == "__main__": 
+    app.run(debug=True)
