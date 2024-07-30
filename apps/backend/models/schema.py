@@ -1,10 +1,5 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from configORM import ConfigORM
-from myRoute import myRoute
-from routes.exampleRoute import exampleRoute
-from routes.seedDB import seedDatabase
-db = SQLAlchemy()
+#models
+from server import db 
 class Pitch(db.Model):
     __tablename__ = "Pitch"
     pitcherName = db.Column(db.String(100), db.ForeignKey('Player.name'), primary_key = True)
@@ -25,13 +20,3 @@ class Player(db.Model):
     handedness = db.Column(db.String)
     def __repr__(self):
         return f'<Pitcher {self.name}>'
-def initFlask(): 
-    app = Flask(__name__)
-    app.config.from_object(ConfigORM)
-    db.init_app(app)
-    app.register_blueprint(myRoute, url_prefix='/api')
-    app.register_blueprint(exampleRoute, url_prefix='/api')
-    app.register_blueprint(seedDatabase, url_prefix='/api')
-    with app.app_context(): 
-        db.create_all()
-    return app 
