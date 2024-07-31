@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 import numpy as np 
-trainCNN = Blueprint('trainCNN', __name__)
-@trainCNN.route("/trainCNN", methods = ['GET'])
+buildArrays = Blueprint('buildArrays', __name__)
+@buildArrays.route("/buildArrays", methods = ['GET'])
 def handler(): 
     from models.schema import  Pitch
     allPitches = Pitch.query.all()
