@@ -1,3 +1,7 @@
+import os
 class ConfigORM:
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/postgres'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI=os.getenv('POSTGRES_CONNECTION_STRING')
+
+
+

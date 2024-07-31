@@ -1,0 +1,36 @@
+version: "3.1"
+x-production-args: &production-args
+  POSTGRES_CONNECTION_STRING: "postgresql+psycopg2://postgres:postgres@productiondatabase.cbqi880oofqa.us-east-2.rds.amazonaws.com/postgres"
+
+services:
+  frontend: 
+    build: 
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - 80:3000
+    networks:
+      - app-network
+    depends_on:
+      - backend
+    image: vivekjag1/mlbclassifier:frontend
+  
+  backend: 
+    build:
+      context: ./apps/backend 
+      dockerfile: Dockerfile
+      args:
+        POSTGRES_CONNECTION_STRING: ${POSTGRES_CONNECTION_STRING} 
+    container_name: backend
+    ports:
+      - "3001:3001"
+    environment:
+      <<: *production-args 
+    networks:
+      - app-network
+    image: vivekjag1/mlbclassifier:frontend
+
+
+networks:
+  app-network:
