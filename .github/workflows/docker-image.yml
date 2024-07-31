@@ -22,15 +22,15 @@ jobs:
       - name: build UI 
         uses: docker/build-push-action@v5
         with: 
-            context: ./apps/frontend 
-            file: Dockerfile 
+            context: .
+            file: ./apps/frontend/Dockerfile 
             push: true 
             tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKERHUB_REPO}}:frontend
       - name: build backend
         uses: docker/build-push-action@v5
         with: 
-            context: ./apps/backend 
-            file: Dockerfile 
+            context: .
+            file: ./apps/backend/Dockerfile 
             push: true 
             tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKERHUB_REPO}}:backend
             
