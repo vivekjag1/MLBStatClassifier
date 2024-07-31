@@ -10,32 +10,32 @@ jobs:
   build: 
     runs-on: ubuntu-latest
     steps: 
-      - name: checkout 
+      - name: Checkout code
         uses: actions/checkout@v4
-      - name: Login to docker hub 
+      
+      - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with: 
-          username: ${{secrets.DOCKER_USERNAME}}
-          password: ${{secrets.DOCKERHUB_TOKEN}}
-      - name: buildContainer 
-        uses: docker/setup-buildx-action@v3 
-      - name: build UI 
-        uses: docker/build-push-action@v5
-        with: 
-            context: .
-            file: ./apps/frontend/Dockerfile 
-            push: true 
-            tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKERHUB_REPO}}:frontend
-      - name: build backend
-        uses: docker/build-push-action@v5
-        with: 
-            context: .
-            file: ./apps/backend/Dockerfile 
-            push: true 
-            tags: ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKERHUB_REPO}}:backend
-            
-            
-            
-            
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       
-          
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v5
+        with: 
+            context: ./apps/frontend
+            file: ./apps/frontend/Dockerfile
+            push: true
+            tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:frontend
+            build-args: |
+              NODE_ENV=production
+      
+      - name: Build and push backend image
+        uses: docker/build-push-action@v5
+        with: 
+            context: ./apps/backend
+            file: ./apps/backend/Dockerfile
+            push: true
+            tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:backend
