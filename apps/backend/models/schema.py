@@ -8,12 +8,22 @@ class Pitch(db.Model):
     releaseSpeed = db.Column(db.Float )
     spinRate = db.Column(db.Float)
     movementInches = db.Column(db.Float)
-    alanActiveSpinPct = db.Column(db.Float)
     activeSpin = db.Column(db.Float)
-    hawkeyeMeasured = db.Column(db.Float)
     movementInferred = db.Column(db.Float)
     def __repr__(self):
         return f'<Pitch from {self.pitcherName}>'
+    def toDict(self): 
+        return { 
+            "pitchID": self.pitchID, 
+            "pitcherName": self.pitcherName, 
+            "pitchType": self.pitchType, 
+            "releaseSpeed": self.releaseSpeed,
+            "spinRate": self.spinRate, 
+            "movementInches": self.movementInches, 
+            "activeSpin": self.activeSpin, 
+            "movementInferred": self.movementInferred
+
+        }
 class Player(db.Model):
     __tablename__ = "Player"
     playerID = db.Column(db.Integer, unique=True, primary_key = True)
@@ -22,4 +32,11 @@ class Player(db.Model):
     pitches = db.relationship('Pitch', backref='Player')
     def __repr__(self):
         return f'<Pitcher {self.name}>'
+    def toDict(self): 
+        return{
+            "playerID": self.playerID, 
+            "name": self.name, 
+            "handedness": self.handedness
+        }
+    
     
