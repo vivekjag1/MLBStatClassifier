@@ -1,4 +1,6 @@
 FROM python:3.9
+RUN apt-get update 
+RUN apt-get install -y postgresql libpq-dev postgresql-client postgresql-client-common gcc
 
 RUN useradd -r -s /bin/bash vivek
 
@@ -16,6 +18,11 @@ USER vivek
 
 ENV FLASK_ENV=production
 ENV PATH=/app/.local/bin:$PATH
+
+ARG POSTGRES_CONNECTION_STRING
+
+ENV POSTGRES_CONNECTION_STRING $POSTGRES_CONNECTION_STRING
+
 
 EXPOSE 3001
 

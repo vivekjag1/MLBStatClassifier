@@ -1,36 +1,36 @@
 version: "3.1"
+x-production-args: &production-args
+  POSTGRES_CONNECTION_STRING: "postgresql+psycopg2://postgres:postgres@productiondatabase.cbqi880oofqa.us-east-2.rds.amazonaws.com/postgres"
+
 services:
-  postgres:
-    image: postgres:latest
-    container_name: postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+  frontend: 
+    build: 
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    container_name: frontend
     ports:
-      - "5432:5432"
+      - 80:3000
     networks:
       - app-network
-
+    depends_on:
+      - backend
+    image: vivekjag1/mlbclassifier:frontend
+  
   backend: 
     build:
       context: ./apps/backend 
       dockerfile: Dockerfile
-      args: 
-       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-       - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      args:
+        POSTGRES_CONNECTION_STRING: ${POSTGRES_CONNECTION_STRING} 
     container_name: backend
-    ports: 
+    ports:
       - "3001:3001"
     environment:
-       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-       - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
-    depends_on:
-      - postgres
+      <<: *production-args 
     networks:
       - app-network
+    image: vivekjag1/mlbclassifier:frontend
+
 
 networks:
   app-network:
