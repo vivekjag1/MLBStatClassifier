@@ -34,6 +34,7 @@ def handler():
     np.save("./numpyArrays/trainingLabels.npy", trainingLabels)
     np.save("./numpyArrays/testingFeatures.npy", testingFeatures)
     np.save("./numpyArrays/testingLabels.npy", testingLabels)
+    
 
 
     
