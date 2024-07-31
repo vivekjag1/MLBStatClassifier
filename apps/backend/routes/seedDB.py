@@ -48,15 +48,13 @@ def parseFile():
     i = 0
     for pitch in pitchArray: 
         pitcherName =  pitch[1] + ' ' + pitch[0]
-        pitchType = pitch[4]
+        pitchType = pitch[13]
         releaseSpeed = pitch[6]
         spinRate = pitch[7]
         movementInches = pitch[8]
-        alanActiveSpinPct = pitch[9]
         activeSpin = pitch[10]
-        hawkeyeMeasured = pitch[11]
         movementInferred = pitch[12]
-        newPitch = Pitch(pitchID = i, pitcherName = pitcherName, pitchType = pitchType, releaseSpeed = releaseSpeed, spinRate = spinRate, movementInches = movementInches, alanActiveSpinPct = alanActiveSpinPct, activeSpin = activeSpin, hawkeyeMeasured = hawkeyeMeasured, movementInferred = movementInferred)
+        newPitch = Pitch(pitchID = i, pitcherName = pitcherName, pitchType = pitchType, releaseSpeed = releaseSpeed, spinRate = spinRate, movementInches = movementInches, activeSpin = activeSpin, movementInferred = movementInferred)
         db.session.add(newPitch)
         i += 1
     db.session.commit()
