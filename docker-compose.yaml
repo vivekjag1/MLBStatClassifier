@@ -1,6 +1,6 @@
 version: "3.1"
 x-production-args: &production-args
-  POSTGRES_CONNECTION_STRING: "postgresql+psycopg2://postgres:postgres@productiondatabase.cbqi880oofqa.us-east-2.rds.amazonaws.com/postgres"
+  POSTGRES_CONNECTION_STRING: "postgresql+psycopg2://postgres:postgres@mlb-app-production.cbqi880oofqa.us-east-2.rds.amazonaws.com/postgres"
 
 services:
   frontend: 

@@ -12,7 +12,7 @@ def parseFile():
             "message":"Database is already seeded!"
         }
         return message 
-    with open('./data/allPitches2024.csv') as f: 
+    with open('./data/allPitchMovement24.csv') as f: 
         allPitches = [i for i in f.readlines() if i!=',']
     allPitches = np.array(allPitches)
     allPitches = allPitches[1:]
@@ -33,29 +33,29 @@ def parseFile():
         splitArray.append(thisRow[1:])
     #now we need to make a list of all the pitchers 
     pitchArray = np.array(splitArray.copy())
-    ids = []
-    for pitch in pitchArray:
-        pitcherName =  pitch[1] + ' ' + pitch[0]
-        playerID = pitch[2]
-        if(playerID in ids): 
-            continue
-        else: 
-            ids.append(playerID)
-        handedness = pitch[3]         
-        newPlayer = Player(playerID = playerID, name = pitcherName, handedness = handedness)
-        db.session.add(newPlayer)
-    db.session.commit()
-    i = 0
-    for pitch in pitchArray: 
-        pitcherName =  pitch[1] + ' ' + pitch[0]
-        pitchType = pitch[13]
-        releaseSpeed = pitch[6]
-        spinRate = pitch[7]
-        movementInches = pitch[8]
-        activeSpin = pitch[10]
-        movementInferred = pitch[12]
-        newPitch = Pitch(pitchID = i, pitcherName = pitcherName, pitchType = pitchType, releaseSpeed = releaseSpeed, spinRate = spinRate, movementInches = movementInches, activeSpin = activeSpin, movementInferred = movementInferred)
-        db.session.add(newPitch)
-        i += 1
-    db.session.commit()
-    return jsonify(splitArray)
+    # ids = []
+    # for pitch in pitchArray:
+    #     pitcherName =  pitch[1] + ' ' + pitch[0]
+    #     playerID = pitch[2]
+    #     if(playerID in ids): 
+    #         continue
+    #     else: 
+    #         ids.append(playerID)
+    #     handedness = pitch[3]         
+    #     newPlayer = Player(playerID = playerID, name = pitcherName, handedness = handedness)
+    #     db.session.add(newPlayer)
+    # db.session.commit()
+    # i = 0
+    # for pitch in pitchArray: 
+    #     pitcherName =  pitch[1] + ' ' + pitch[0]
+    #     pitchType = pitch[13]
+    #     releaseSpeed = pitch[6]
+    #     spinRate = pitch[7]
+    #     movementInches = pitch[8]
+    #     activeSpin = pitch[10]
+    #     movementInferred = pitch[12]
+    #     newPitch = Pitch(pitchID = i, pitcherName = pitcherName, pitchType = pitchType, releaseSpeed = releaseSpeed, spinRate = spinRate, movementInches = movementInches, activeSpin = activeSpin, movementInferred = movementInferred)
+    #     db.session.add(newPitch)
+    #     i += 1
+    # db.session.commit()
+    return jsonify(pitchArray)
