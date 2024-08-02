@@ -29,7 +29,7 @@ services:
       <<: *production-args 
     networks:
       - app-network
-    image: vivekjag1/mlbclassifier:frontend
+    image: vivekjag1/mlbclassifier:backend
 
 
 networks:
