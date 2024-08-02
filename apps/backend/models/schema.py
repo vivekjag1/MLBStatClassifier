@@ -4,25 +4,24 @@ class Pitch(db.Model):
     __tablename__ = "Pitch"
     pitchID = db.Column(db.Integer, primary_key = True)
     pitcherName = db.Column(db.String(100), db.ForeignKey('Player.name'))
+    velocity = db.Column(db.Float )
+    pitchBreakZ = db.Column(db.Float)
+    rise = db.Column(db.Float)
+    pitchBreakX = db.Column(db.Float)
+    tail = db.Column(db.Float)
     pitchType = db.Column(db.String(100))
-    releaseSpeed = db.Column(db.Float )
-    spinRate = db.Column(db.Float)
-    movementInches = db.Column(db.Float)
-    activeSpin = db.Column(db.Float)
-    movementInferred = db.Column(db.Float)
     def __repr__(self):
         return f'<Pitch from {self.pitcherName}>'
     def toDict(self): 
         return { 
             "pitchID": self.pitchID, 
             "pitcherName": self.pitcherName, 
-            "pitchType": self.pitchType, 
-            "releaseSpeed": self.releaseSpeed,
-            "spinRate": self.spinRate, 
-            "movementInches": self.movementInches, 
-            "activeSpin": self.activeSpin, 
-            "movementInferred": self.movementInferred
-
+            "velocity": self.velocity, 
+            "z-break": self.pitchBreakZ,
+            "tail": self.tail, 
+            "rise": self.rise, 
+            "x-break": self.pitchBreakX, 
+            "type": self.pitchType
         }
 class Player(db.Model):
     __tablename__ = "Player"
