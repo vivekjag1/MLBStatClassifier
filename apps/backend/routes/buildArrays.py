@@ -12,12 +12,12 @@ def handler():
     i = 0
     for pitch in pitchList: 
         row = []
-        row.append(pitch['activeSpin'])
-        row.append(pitch['spinRate'])
-        row.append(pitch['movementInches'])
-        row.append(pitch['releaseSpeed'])
-        row.append(pitch['movementInferred'])
-        labels.append(pitch['pitchType'])
+        row.append(pitch['velocity'])
+        row.append(pitch['z-break'])
+        row.append(pitch['rise'])
+        row.append(pitch['x-break'])
+        row.append(pitch['tail'])
+        labels.append(pitch['type'])
         features.append(row)
     labels = np.array(labels)
     features = np.array(features)
@@ -35,18 +35,4 @@ def handler():
     np.save("./numpyArrays/testingFeatures.npy", testingFeatures)
     np.save("./numpyArrays/testingLabels.npy", testingLabels)
     
-
-
-    
-
-   
-
-
-
-
-
-
-
- 
-
-    return jsonify(trainingLabels.shape)
+    return jsonify(features.tolist())
