@@ -62,7 +62,7 @@ def handler():
     # print(score)
     # joblib.dump(model, 'classifier.pkl')
     model = joblib.load('classifier.pkl')
-    test = [84.5, 37.1, 0, 2.2, -59]
+    test = [95.3, 14.8, -4, 5.4, -26]
     testTwo = []
     # testTwo.append(itemX)
     
