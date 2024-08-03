@@ -9,6 +9,7 @@ from routes.getPitchesByName import getPitchesByPitcher
 from routes.getPitcherByName import getPitcherByName 
 from routes.getPitches import getPitches
 from routes.buildArrays import buildArrays
+from routes.makeClassification import makeClassification
 db = SQLAlchemy()
 def createApp(): 
     app = Flask(__name__)
@@ -21,6 +22,9 @@ def createApp():
     app.register_blueprint(getPitcherByName, url_prefix='/api')
     app.register_blueprint(getPitches, url_prefix='/api')
     app.register_blueprint(buildArrays, url_prefix='/api')
+    app.register_blueprint(makeClassification, url_prefix = '/api')
+    
+
 
 
     with app.app_context(): 
