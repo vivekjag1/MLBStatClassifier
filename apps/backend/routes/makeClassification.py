@@ -1,4 +1,4 @@
-from flask import Blueprint 
+from flask import Blueprint, request
 
 makeClassification = Blueprint('makeClassification', __name__)
 @makeClassification.route('/makeClassification', methods = ['POST'])
