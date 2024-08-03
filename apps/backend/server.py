@@ -26,6 +26,7 @@ def createApp():
     
 
 
+
     with app.app_context(): 
         from models.schema import Player, Pitch 
         db.create_all()
