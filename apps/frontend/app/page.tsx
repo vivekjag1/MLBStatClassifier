@@ -2,6 +2,7 @@
 import Image from "next/image";
 import {useState, useEffect} from "react"
 import {motion, AnimatePresence } from "framer-motion"
+import Link from "next/link";
 
 
 
@@ -16,6 +17,7 @@ export default function Home() {
   })
   return (
     <div className="relative items-center justify-center h-screen w-screen cursor-pointer">
+      <Link href="/classifier">
       {
         imageArr.map((image, index) =>{
           return(
@@ -39,6 +41,7 @@ export default function Home() {
       <div className="absolute inset-0 flex items-center justify-center z-20">
         <p className="relative mt-20  z-15   text-center text-white font-mono text-3xl font-bold animate-pulse ">Click anywhere to get started </p>
       </div>  
+      </Link>
     </div>
   );
 }
