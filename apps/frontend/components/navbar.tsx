@@ -19,7 +19,7 @@ const NavBar = () => {
     const iconAnimation = useAnimationControls()
     const animations = { 
         close: {
-            "width":"7rem", 
+            "width":"5rem", 
             transition: {
                 type:"spring", 
                 damping: 15,
@@ -66,10 +66,8 @@ const NavBar = () => {
     return (
         <motion.nav variants={animations} animate={containerControls} initial="close" className="bg-red-800 flex flex-col z-10 p-5 fixed top-0 left-0 h-screen shadow-neutral-600 rounded-tr-xl rounded-br-xl cursor-pointer">
             <div className = "flex flex-row w-full justify-between place-items-center">
-                <div className = "flex items-center">
-                    <Image src = "/baseballPlayer.png" alt = "clipart"  className="absolute object-contain" width={40} height={40} />
-                </div>
-                {navBarOpen && <motion.p variants={textAnimation} className="ml-5 whitespace-nowrap flex items-center text-xl text-white font-mono font-bold" onClick={() => setNavBarOpen(true)}>MLB Classifier</motion.p>}
+                
+                {navBarOpen && <motion.p variants={textAnimation} className=" whitespace-nowrap flex items-center text-left text-xl text-white font-mono font-bold" onClick={() => setNavBarOpen(true)}>MLB Classifier</motion.p>}
                 {navBarOpen && <ArrowBackIosIcon className = "text-white" onClick={() => setNavBarOpen(!navBarOpen)} />}
                 {!navBarOpen && <ArrowForwardIosIcon className = "text-white" onClick={() => setNavBarOpen(!navBarOpen)} />}
             </div>
