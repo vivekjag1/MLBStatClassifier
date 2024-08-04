@@ -53,12 +53,17 @@ const NavBar = () => {
         if(navBarOpen){
             containerControls.start("open"); 
             iconAnimation.start("open")
-            setFullyOpen(!fullyOpen)
+            setTimeout(() =>{ 
+                setFullyOpen(!fullyOpen)
+            }, 150)
+            
         }
         else{
             containerControls.start("close"); 
             iconAnimation.start("close")
-            setFullyOpen(!fullyOpen)
+            setTimeout(() =>{ 
+                setFullyOpen(!fullyOpen)
+            }, 150)
 
         }
     }, [containerControls, iconAnimation, navBarOpen])
