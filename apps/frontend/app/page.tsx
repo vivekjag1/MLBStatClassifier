@@ -27,7 +27,7 @@ export default function Home() {
               className="absolute inset-0"
               > 
               <div className="absolute flex items-center justify-center inset-0 bg-gradient-to-b from-blue-500 to-blue-900 opacity-40 z-10"/>  
-              <Image src={image} alt={`Hero Image ${index}`} layout="fill" className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out" />
+              <Image src={image} alt={`Hero Image ${index}`} fill className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out" />
               </motion.div>
           )
         })
