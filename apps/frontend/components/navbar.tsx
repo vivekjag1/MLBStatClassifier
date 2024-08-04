@@ -4,11 +4,16 @@ import Link from "next/link"
 import { useEffect, useState } from "react";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Image from "next/image"
-
+import NavItem from "../components/NavItem"
+import SportsBaseballIcon from '@mui/icons-material/SportsBaseball';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-
+import SportsBaseball from "@mui/icons-material/SportsBaseball";
+import PersonIcon from '@mui/icons-material/Person';
+import DatasetIcon from '@mui/icons-material/Dataset';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 const NavBar = () => {
     const[navBarOpen, setNavBarOpen] = useState<boolean>(true); 
+    const [fullyOpen, setFullyOpen] = useState<boolean>(false);
     const containerControls = useAnimationControls(); 
     const changeState = () =>  setNavBarOpen(!navBarOpen)
     const iconAnimation = useAnimationControls()
@@ -22,7 +27,7 @@ const NavBar = () => {
             }
         }, 
         open:{
-            "width": "17rem", 
+            "width": "18rem", 
             transition: {
                 type:"spring", 
                 damping: 15, 
@@ -48,15 +53,18 @@ const NavBar = () => {
         if(navBarOpen){
             containerControls.start("open"); 
             iconAnimation.start("open")
+            setFullyOpen(!fullyOpen)
         }
         else{
             containerControls.start("close"); 
             iconAnimation.start("close")
+            setFullyOpen(!fullyOpen)
+
         }
     }, [containerControls, iconAnimation, navBarOpen])
 
     return (
-        <motion.nav variants={animations} animate={containerControls} initial="close" className="bg-blue-800 flex flex-col z-10 gap-20 p-5 fixed top-0 left-0 h-screen shadow-neutral-600 rounded-tr-xl rounded-br-xl cursor-pointer">
+        <motion.nav variants={animations} animate={containerControls} initial="close" className="bg-red-800 flex flex-col z-10 p-5 fixed top-0 left-0 h-screen shadow-neutral-600 rounded-tr-xl rounded-br-xl cursor-pointer">
             <div className = "flex flex-row w-full justify-between place-items-center">
                 <div className = "flex items-center">
                     <Image src = "/baseballPlayer.png" alt = "clipart"  className="absolute object-contain" width={40} height={40} />
@@ -64,10 +72,22 @@ const NavBar = () => {
                 {navBarOpen && <motion.p variants={textAnimation} className="ml-5 whitespace-nowrap flex items-center text-xl text-white font-mono font-bold" onClick={() => setNavBarOpen(true)}>MLB Classifier</motion.p>}
                 {navBarOpen && <ArrowBackIosIcon className = "text-white" onClick={() => setNavBarOpen(!navBarOpen)} />}
                 {!navBarOpen && <ArrowForwardIosIcon className = "text-white" onClick={() => setNavBarOpen(!navBarOpen)} />}
-                
-
-
             </div>
+            <NavItem linkTo = "/classifier" title = "Pitch Classifier" open={fullyOpen}>
+                    <SportsBaseball sx={{color:"white"}}/>
+            </NavItem>
+            <NavItem linkTo = "/comparison" title = "Player Comparisons" open={fullyOpen}>
+                    <PersonIcon sx={{color:"white"}}/>
+            </NavItem>
+            <NavItem linkTo = "/data" title = "Player Data" open={fullyOpen}>
+                    <DatasetIcon sx={{color:"white"}}/>
+            </NavItem>
+            <NavItem linkTo = "/teamSchedule" title = "Team Schedules" open={fullyOpen}>
+                    <CalendarMonthIcon sx={{color:"white"}}/>
+            </NavItem>
+
+        
+              
         </motion.nav>
 
     )
