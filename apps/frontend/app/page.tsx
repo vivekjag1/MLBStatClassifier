@@ -7,7 +7,7 @@ import {motion, AnimatePresence } from "framer-motion"
 
 export default function Home() {
   const [imageIndex, setImageIndex] = useState<number>(0)
-  const imageArr:string[] = ["/newFenway.jpg", "/dodgerStadium.jpg", "/wrigley.jpg", "/citiField.jpg"]
+  const imageArr:string[] = ["/newFenway.jpg", "/dodgerStadium.jpg", "/wrigley.jpg", "/bush.jpg"]
   useEffect(() => {
     const interval = setInterval(() =>{
       setImageIndex((prev) => (prev+1)%imageArr.length); 
