@@ -1,4 +1,4 @@
-import { useState } from "react"
+ import { useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import axios from "axios"
@@ -14,11 +14,12 @@ const ClassifierForm = () => {
     const handleSubmit = async(e: React.SyntheticEvent) =>{
         e.preventDefault(); 
         console.log("eegeeekeeey"); 
-        const data =  await axios.post('/api/exampleRoute', {
+        const data =  await axios.post('/api/makeClassification', {
             "velocity": velocity, 
             "z-break": zbreak, 
             "rise": rise, 
-            "tail": tail
+            "tail": tail,
+            "x-break":xbreak
         }); 
         console.log("the data is", data)
 
@@ -45,9 +46,6 @@ const ClassifierForm = () => {
                     <Button variant="destructive" className="m-[2rem] w-[7rem]" type="button">Clear </Button>
                     <Button variant="default" className="m-[2rem] w-[7rem] " type="submit" onClick={handleSubmit}>Submit</Button>
                 </div>
-
-        
-
             </form>
     )
 }

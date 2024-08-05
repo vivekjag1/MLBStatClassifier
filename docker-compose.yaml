@@ -1,7 +1,6 @@
 version: "3.1"
 x-production-args: &production-args
   POSTGRES_CONNECTION_STRING: "postgresql+psycopg2://postgres:postgres@mlb-app-production.cbqi880oofqa.us-east-2.rds.amazonaws.com/postgres"
-
 services:
   frontend: 
     build: 
@@ -24,7 +23,7 @@ services:
         POSTGRES_CONNECTION_STRING: ${POSTGRES_CONNECTION_STRING} 
     container_name: backend
     ports:
-      - "3001:3001"
+      - 3001:3001
     environment:
       <<: *production-args 
     networks:
@@ -34,3 +33,4 @@ services:
 
 networks:
   app-network:
+    driver: bridge
