@@ -8,35 +8,23 @@ const ClassifierForm = () => {
     const [rise, setRise] = useState<number>(); 
     const [xbreak, setXBreak] = useState<number>(); 
     const [tail, setTail] = useState<number>(); 
-    const makeRequest = async() =>{
-        return new Promise((resolve, reject) => { 
-            const data =  axios.post("/api/makeClassification", { 
-                "velocity": velocity, 
-                "z-break": zbreak, 
-                "rise": rise, 
-                "tail": tail
-            }); 
-            if(data.res == 200)
-
-            
-        })
-        try{
-           
-            return data.data
-        }
-        catch(err){
-            throw(err)
-        }
-       
-    }
+    
 
 
-    const handleSubmit = (e: React.SyntheticEvent) =>{
+    const handleSubmit = async(e: React.SyntheticEvent) =>{
+        e.preventDefault(); 
         console.log("eegeeekeeey"); 
-        const data =  makeRequest().then(); 
+        const data =  await axios.post('/api/exampleRoute', {
+            "velocity": velocity, 
+            "z-break": zbreak, 
+            "rise": rise, 
+            "tail": tail
+        }); 
+        console.log("the data is", data)
+
 
         const types:string[] = ["4-Seam Fastball","Changeup", "Curveball","Cutter", "Sinker", "Slider",  "Split-Finger", "Sweeper",  "Slurve" ]; 
-        const pitchType = types[data ]
+        const pitchType = types[data.data]
         console.log("eee", pitchType)
     }
     return (
@@ -55,7 +43,7 @@ const ClassifierForm = () => {
                 <Input type = "number" className= "w-3/4 mt-5 " placeholder="Enter the pitch tail in inches" value={tail} onChange={(e) => setTail(parseFloat(e.target.value))}/>
                 <div className="mt-20 flex flex-row px-5">
                     <Button variant="destructive" className="m-[2rem] w-[7rem]" type="button">Clear </Button>
-                    <Button variant="default" className="m-[2rem] w-[7rem] " type="submit">Submit</Button>
+                    <Button variant="default" className="m-[2rem] w-[7rem] " type="submit" onClick={handleSubmit}>Submit</Button>
                 </div>
 
         

@@ -5,15 +5,7 @@ import ClassifierForm from "../../components/classifierForm"
 
 
 const Page = () => {
-    useEffect( () => {
-        const test = async () => {
-            const res = await axios.get('/api/myRoute')
-            return res
-        }
-        test().then(console.log)
 
-        
-    })
 
     return (
         <div className = " grid grid-cols-2 min-h-screen ml-20 overflow-hidden bg-gray-200">
