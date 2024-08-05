@@ -4,7 +4,7 @@ NOTE -> do not run this file in production. should only be run during developmen
 import numpy as np
 from sklearn.neural_network import MLPClassifier
 import joblib
-
+import pickle
 def handler(): 
     #get training features and labels 
     trainingFeatures = np.load("../numpyArrays/trainingFeatures.npy")
@@ -60,13 +60,19 @@ def handler():
 
     # score = model.score(testingFeatures, testingLabels)
     # print(score)
+    # with open ('classifier.pkl', 'wb') as f: 
+    #     pickle.dump(model, f)
     # joblib.dump(model, 'classifier.pkl')
     model = joblib.load('classifier.pkl')
-    test = [95.3, 14.8, -4, 5.4, -26]
-    testTwo = []
+    with open('classifier.pkl', 'rb') as f:
+        test = [95.3, 14.8, -4, 5.4, -26]
+        testTwo = []
+        model = pickle.load(f)
+        print(model.predict([test]))
+
+    
     # testTwo.append(itemX)
     
-    print(model.predict([test]))
 
 
 
