@@ -1,8 +1,11 @@
- import { useState } from "react"
+ import React, { useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import axios from "axios"
-const ClassifierForm = () => {
+interface ClassifierFormProps{ 
+    handleClassification: (pitch:number) => void  
+}
+const ClassifierForm = (props:ClassifierFormProps) => {
     const [velocity, setVelocity] = useState<number>()
     const [zbreak, setZBreak] = useState<number>(); 
     const [rise, setRise] = useState<number>(); 
@@ -42,7 +45,7 @@ const ClassifierForm = () => {
                 <Input type = "number" className= "w-3/4 mt-5 " placeholder="Enter the pitch rise in inches" value={rise} onChange={(e) => setRise(parseFloat(e.target.value))}/>
                 <Input type = "number" className= "w-3/4 mt-5 " placeholder="Enter the pitch break in the X-direction in inches" value={xbreak} onChange={(e) => setXBreak(parseFloat(e.target.value))}/>
                 <Input type = "number" className= "w-3/4 mt-5 " placeholder="Enter the pitch tail in inches" value={tail} onChange={(e) => setTail(parseFloat(e.target.value))}/>
-                <div className="mt-20 flex flex-row px-5">
+                <div className="mt-10 flex flex-row px-5">
                     <Button variant="destructive" className="m-[2rem] w-[7rem]" type="button">Clear </Button>
                     <Button variant="default" className="m-[2rem] w-[7rem] " type="submit" onClick={handleSubmit}>Submit</Button>
                 </div>
