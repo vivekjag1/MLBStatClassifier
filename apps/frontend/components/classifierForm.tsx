@@ -14,7 +14,7 @@ const ClassifierForm = () => {
     const handleSubmit = async(e: React.SyntheticEvent) =>{
         e.preventDefault(); 
         console.log("eegeeekeeey"); 
-        const data =  await axios.post('/api/exampleRoute', {
+        const data =  await axios.post('/api/makeClassification', {
             "velocity": velocity, 
             "z-break": zbreak, 
             "rise": rise, 
