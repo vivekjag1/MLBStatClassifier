@@ -12,7 +12,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import DatasetIcon from '@mui/icons-material/Dataset';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 const NavBar = () => {
-    const[navBarOpen, setNavBarOpen] = useState<boolean>(true); 
+    const [navBarOpen, setNavBarOpen] = useState<boolean>(false); 
     const [fullyOpen, setFullyOpen] = useState<boolean>(false);
     const containerControls = useAnimationControls(); 
     const changeState = () =>  setNavBarOpen(!navBarOpen)
@@ -53,9 +53,7 @@ const NavBar = () => {
         if(navBarOpen){
             containerControls.start("open"); 
             iconAnimation.start("open")
-            setTimeout(() =>{ 
-                setFullyOpen(!fullyOpen)
-            }, 150)
+           
             
         }
         else{
@@ -76,16 +74,16 @@ const NavBar = () => {
                 {navBarOpen && <ArrowBackIosIcon className = "text-white" onClick={() => setNavBarOpen(!navBarOpen)} />}
                 {!navBarOpen && <ArrowForwardIosIcon className = "text-white" onClick={() => setNavBarOpen(!navBarOpen)} />}
             </div>
-            <NavItem linkTo = "/classifier" title = "Pitch Classifier" open={fullyOpen}>
+            <NavItem linkTo = "/classifier" title = "Pitch Classifier" open={navBarOpen}>
                     <SportsBaseball sx={{color:"white"}}/>
             </NavItem>
-            <NavItem linkTo = "/comparison" title = "Player Comparisons" open={fullyOpen}>
+            <NavItem linkTo = "/comparison" title = "Player Comparisons" open={navBarOpen}>
                     <PersonIcon sx={{color:"white"}}/>
             </NavItem>
-            <NavItem linkTo = "/data" title = "Player Data" open={fullyOpen}>
+            <NavItem linkTo = "/data" title = "Player Data" open={navBarOpen}>
                     <DatasetIcon sx={{color:"white"}}/>
             </NavItem>
-            <NavItem linkTo = "/teamSchedule" title = "Team Schedules" open={fullyOpen}>
+            <NavItem linkTo = "/teamSchedule" title = "Team Schedules" open={navBarOpen}>
                     <CalendarMonthIcon sx={{color:"white"}}/>
             </NavItem>
 
