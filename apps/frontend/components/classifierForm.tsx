@@ -18,7 +18,8 @@ const ClassifierForm = () => {
             "velocity": velocity, 
             "z-break": zbreak, 
             "rise": rise, 
-            "tail": tail
+            "tail": tail,
+            "x-break":xbreak
         }); 
         console.log("the data is", data)
 
