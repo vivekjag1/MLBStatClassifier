@@ -1,6 +1,8 @@
 from flask import Flask, jsonify 
 from flask_sqlalchemy import SQLAlchemy
 import numpy as np 
+from flask_cors import CORS
+
 from configORM import ConfigORM
 from myRoute import myRoute
 from routes.exampleRoute import exampleRoute
@@ -13,6 +15,8 @@ from routes.makeClassification import makeClassification
 db = SQLAlchemy()
 def createApp(): 
     app = Flask(__name__)
+    CORS(app)
+    
     app.config.from_object(ConfigORM)
     db.init_app(app)
     app.register_blueprint(myRoute, url_prefix='/api')
