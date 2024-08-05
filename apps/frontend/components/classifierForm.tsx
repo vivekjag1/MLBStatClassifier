@@ -1,4 +1,4 @@
-import { useState } from "react"
+ import { useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import axios from "axios"
@@ -45,9 +45,6 @@ const ClassifierForm = () => {
                     <Button variant="destructive" className="m-[2rem] w-[7rem]" type="button">Clear </Button>
                     <Button variant="default" className="m-[2rem] w-[7rem] " type="submit" onClick={handleSubmit}>Submit</Button>
                 </div>
-
-        
-
             </form>
     )
 }
