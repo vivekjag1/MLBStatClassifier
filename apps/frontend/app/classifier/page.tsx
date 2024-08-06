@@ -27,6 +27,7 @@ const Page = () => {
     ];
     useEffect(() =>{
         const fetchAverages = async() =>{
+            const build = await axios.get('/api/buildArrays')
             const data = await axios.get('/api/getAverages'); 
             setAverages(data.data)
             const leaders = await axios.get('/api/getLeagueLeaders'); 

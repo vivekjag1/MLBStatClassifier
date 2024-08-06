@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify
 import pickle 
-import joblib
 makeClassification = Blueprint('makeClassification', __name__)
 @makeClassification.route('/makeClassification', methods = ['POST'])
 def handler(): 
