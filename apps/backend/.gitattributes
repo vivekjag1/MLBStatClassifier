@@ -1,1 +1,4 @@
 *.pkl filter=lfs diff=lfs merge=lfs -text
+*.npy filter=lfs diff=lfs merge=lfs -text
+numpyArrays filter=lfs diff=lfs merge=lfs -text
+ML filter=lfs diff=lfs merge=lfs -text
