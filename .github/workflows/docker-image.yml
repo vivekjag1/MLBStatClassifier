@@ -31,6 +31,7 @@ jobs:
             tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:frontend
             build-args: |
               NODE_ENV=production
+            no-cache: true
       
       - name: Build and push backend image
         uses: docker/build-push-action@v5
@@ -39,3 +40,5 @@ jobs:
             file: ./apps/backend/Dockerfile
             push: true
             tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:backend
+            no-cache: true
+
