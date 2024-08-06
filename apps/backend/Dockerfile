@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.12.2-slim
 RUN apt-get update  
 RUN apt-get install -y postgresql libpq-dev postgresql-client postgresql-client-common gcc
 RUN useradd -r -s /bin/bash vivek

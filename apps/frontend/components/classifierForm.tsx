@@ -1,14 +1,18 @@
- import { useState } from "react"
+ import React, { useState } from "react"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import axios from "axios"
+import { PitchProvider, usePitchContext } from "@/contexts/pitchContext"
+
 const ClassifierForm = () => {
     const [velocity, setVelocity] = useState<number>()
     const [zbreak, setZBreak] = useState<number>(); 
     const [rise, setRise] = useState<number>(); 
     const [xbreak, setXBreak] = useState<number>(); 
     const [tail, setTail] = useState<number>(); 
-    
+    const [pitchType, setPitchType] = useState<number|undefined>(undefined); 
+    const {setPitch} = usePitchContext(); 
+
 
 
     const handleSubmit = async(e: React.SyntheticEvent) =>{
@@ -22,13 +26,16 @@ const ClassifierForm = () => {
             "x-break":xbreak
         }); 
         console.log("the data is", data)
+        setPitch(data.data['result'][0]); 
+
 
 
         const types:string[] = ["4-Seam Fastball","Changeup", "Curveball","Cutter", "Sinker", "Slider",  "Split-Finger", "Sweeper",  "Slurve" ]; 
-        const pitchType = types[data.data]
-        console.log("eee", pitchType)
+        // const pitchType = types[data.data]
+        // console.log("eee", pitchType)
     }
     return (
+        <PitchProvider>
         <form 
             onSubmit={handleSubmit}
             style = {{
@@ -42,11 +49,12 @@ const ClassifierForm = () => {
                 <Input type = "number" className= "w-3/4 mt-5 " placeholder="Enter the pitch rise in inches" value={rise} onChange={(e) => setRise(parseFloat(e.target.value))}/>
                 <Input type = "number" className= "w-3/4 mt-5 " placeholder="Enter the pitch break in the X-direction in inches" value={xbreak} onChange={(e) => setXBreak(parseFloat(e.target.value))}/>
                 <Input type = "number" className= "w-3/4 mt-5 " placeholder="Enter the pitch tail in inches" value={tail} onChange={(e) => setTail(parseFloat(e.target.value))}/>
-                <div className="mt-20 flex flex-row px-5">
+                <div className="mt-10 flex flex-row px-5">
                     <Button variant="destructive" className="m-[2rem] w-[7rem]" type="button">Clear </Button>
                     <Button variant="default" className="m-[2rem] w-[7rem] " type="submit" onClick={handleSubmit}>Submit</Button>
                 </div>
             </form>
+            </PitchProvider>
     )
 }
 export default ClassifierForm

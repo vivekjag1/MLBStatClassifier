@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
             const stopText = () => {
                 setTimeout(() =>{ 
                     setFullyOpen(!fullyOpen)
-                }, 150)
+                }, 160)
             }
             stopText()
         }
