@@ -1,14 +1,15 @@
 "use client"; 
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import axios from "axios"
 import ClassifierForm from "../../components/classifierForm"
 import Image from "next/image"
+import { PitchProvider, usePitchContext } from "@/contexts/pitchContext";
 
 const Page = () => {
-    const [pitch, setPitch] = useState<number>(1); 
+    const {pitch} = usePitchContext(); 
+
     const [pitchString, setPitchString] = useState<string>('')
     const pitchDescriptions = [
-        "None", 
         "This pitch has high velocity and low movement",
         "This pitch has low velocity and relies on late movement",
         "This pitch has low velocity and has high vertical movement",
@@ -25,7 +26,9 @@ const Page = () => {
     ]
     const pitches:string[] = ["4-Seam Fastball", "Changeup",  "Curveball","Cutter","Sinker", "Split-Finger", "Sweeper", "Slurve" ]
     useEffect(() =>{
-        if(pitch == -1){
+       
+        console.log("fml")
+        if(pitch == -1 || pitch == undefined){
             setPitchString("No Pitch!")
         }
         else{
@@ -33,11 +36,9 @@ const Page = () => {
         }
 
     }, [pitch])
-    
-
-
 
     return (
+        <>
         <div className = " grid grid-cols-2  ml-20 overflow-y-hidden h-screen bg-gray-200">
             <div className = "flex flex-col items-center justify-center overflow-hidden">
             <div className="ml-10 mt-10 items-center justify-center w-2/3 bg-white rounded-xl overflow-hidden">
@@ -50,12 +51,12 @@ const Page = () => {
                 </div>
                 <div className=" ml-10 mt-5 items-center justify-center  w-2/3  bg-white rounded-tr-xl rounded-br-xl rounded-tl-xl rounded-bl-xl  ">
                     <h1 className = "items-center justify-center text-center font-mono font-bold  text-2xl">Pitch Data</h1>
-                    <ClassifierForm handleClassification={(pitch) => setPitch(pitch) }/>
+                    <ClassifierForm/>
                 </div>
             </div>
                  <div className="flex flex-col  ml-10 mt-10 items-center  h-1/12 w-2/3  bg-white rounded-tr-xl rounded-br-xl rounded-tl-xl rounded-bl-xl ">
-                    <h1 className = "items-center justify-center text-center font-mono font-bold  mt-20 text-2xl">Classification: {pitchString} </h1>
-                    <h1 className = "items-center justify-center text-center font-mono font-bold  text-lg mt-5"> {pitchDescriptions[pitch + 1]} </h1>
+                    <h1 className = "items-center justify-center text-center font-mono font-bold  mt-20 text-2xl">Classification: {pitch!=-1? pitchString: "No Classification"} </h1>
+                    <h1 className = "items-center justify-center text-center font-mono font-bold  text-lg mt-5"> {pitch!=-1? pitchDescriptions[pitch]: "No Classification"} </h1>
                     <div className = "flex items-center justify-center">
                  </div>
                  <div className="col-span-1 h-full">
@@ -63,17 +64,6 @@ const Page = () => {
                     <h1 className = "items-center justify-center text-left font-mono   text-lg mt-5">Pitcher 1: 50mph, 20 in z-break, etc. etc. :  </h1>
 
                  </div>
-
-
-
-
-
-
-
-                    
-
-
-
                 </div>
            
             <div className="flex flex-col items-center mt-20">
@@ -83,6 +73,7 @@ const Page = () => {
             </div>
 
         </div>
+        </>
     )
 }
 

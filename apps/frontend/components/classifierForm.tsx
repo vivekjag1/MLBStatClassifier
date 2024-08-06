@@ -2,16 +2,17 @@
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import axios from "axios"
-interface ClassifierFormProps{ 
-    handleClassification: (pitch:number) => void  
-}
-const ClassifierForm = (props:ClassifierFormProps) => {
+import { PitchProvider, usePitchContext } from "@/contexts/pitchContext"
+
+const ClassifierForm = () => {
     const [velocity, setVelocity] = useState<number>()
     const [zbreak, setZBreak] = useState<number>(); 
     const [rise, setRise] = useState<number>(); 
     const [xbreak, setXBreak] = useState<number>(); 
     const [tail, setTail] = useState<number>(); 
-    
+    const [pitchType, setPitchType] = useState<number|undefined>(undefined); 
+    const {setPitch} = usePitchContext(); 
+
 
 
     const handleSubmit = async(e: React.SyntheticEvent) =>{
@@ -25,13 +26,16 @@ const ClassifierForm = (props:ClassifierFormProps) => {
             "x-break":xbreak
         }); 
         console.log("the data is", data)
+        setPitch(data.data['result'][0]); 
+
 
 
         const types:string[] = ["4-Seam Fastball","Changeup", "Curveball","Cutter", "Sinker", "Slider",  "Split-Finger", "Sweeper",  "Slurve" ]; 
-        const pitchType = types[data.data]
-        console.log("eee", pitchType)
+        // const pitchType = types[data.data]
+        // console.log("eee", pitchType)
     }
     return (
+        <PitchProvider>
         <form 
             onSubmit={handleSubmit}
             style = {{
@@ -50,6 +54,7 @@ const ClassifierForm = (props:ClassifierFormProps) => {
                     <Button variant="default" className="m-[2rem] w-[7rem] " type="submit" onClick={handleSubmit}>Submit</Button>
                 </div>
             </form>
+            </PitchProvider>
     )
 }
 export default ClassifierForm
