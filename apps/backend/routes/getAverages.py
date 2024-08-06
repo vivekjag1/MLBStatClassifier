@@ -11,3 +11,4 @@ def handler():
 
    
     return jsonify(averages)
+  
