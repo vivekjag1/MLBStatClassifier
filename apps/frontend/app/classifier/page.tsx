@@ -22,8 +22,8 @@ const Page = () => {
         "This pitch can have high velocity and moves downwards",
         "This pitch has medium velocity and high spin and movement",
         "This pitch has low velocity and high break",
-        "This pitch has medium to high velocity with extreme spin and movement",
-        "This pitch has low velocity with extreme spin and movement"
+        "This pitch has medium to high velocity with extreme spin ",
+        "This pitch has low velocity with extreme spin "
     ];
     useEffect(() =>{
         const fetchAverages = async() =>{

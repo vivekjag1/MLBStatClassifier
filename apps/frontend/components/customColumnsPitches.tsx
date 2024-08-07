@@ -10,7 +10,7 @@ export type Pitch = {
     xBreak:number; 
     zBreak:number; 
 }
-export const columns:ColumnDef<Pitch>[] = [
+export const columnsPitches:ColumnDef<Pitch>[] = [
     {
         accessorKey:"pitcherName", 
         header: "Pitcher Name"

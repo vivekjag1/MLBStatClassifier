@@ -88,12 +88,10 @@ const NavBar = () => {
             <NavItem linkTo = "/comparison" title = "Player Comparisons" open={navBarOpen}>
                     <PersonIcon sx={{color:"white"}}/>
             </NavItem>
-            <NavItem linkTo = "/data" title = "Player Data" open={navBarOpen}>
+            <NavItem linkTo = "/data" title = "Data" open={navBarOpen}>
                     <DatasetIcon sx={{color:"white"}}/>
             </NavItem>
-            <NavItem linkTo = "/teamSchedule" title = "Team Schedules" open={navBarOpen}>
-                    <CalendarMonthIcon sx={{color:"white"}}/>
-            </NavItem>
+           
 
         
               

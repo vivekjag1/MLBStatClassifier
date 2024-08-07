@@ -1,8 +1,12 @@
 "use client"; 
+import react, { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { DataTablePagination } from "./PaginatedTable"; 
 import {
     ColumnDef,
+    ColumnFiltersState,
+    getFilteredRowModel,
+
     flexRender,
     getCoreRowModel,
     useReactTable,
@@ -17,6 +21,8 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
+  import { Input } from "@/components/ui/input"
+
 
  interface customTableProps<TData, TValue>{
     columns:ColumnDef<TData, TValue>[]
@@ -26,14 +32,32 @@ import {
     columns,
     data,
   }: customTableProps<TData, TValue>) {
+    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
+        []
+      )
     const table = useReactTable({
       data,
       columns,
       getCoreRowModel: getCoreRowModel(),
-      getPaginationRowModel: getPaginationRowModel()
+      getPaginationRowModel: getPaginationRowModel(), 
+      onColumnFiltersChange: setColumnFilters,
+      getFilteredRowModel: getFilteredRowModel(), 
+      state: {
+        columnFilters,
+      },
     })
     return(
-        <div>
+    <div>
+        <div className="flex items-center py-4">
+            <Input
+             placeholder="Filter players..."
+             value={(table.getColumn("pitcherName")?.getFilterValue() as string) ?? ""}
+                onChange={(event) =>
+                table.getColumn("pitcherName")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+      </div>
 
     <div className="rounded-md border">
       <Table>

@@ -14,11 +14,11 @@ from routes.buildArrays import buildArrays
 from routes.makeClassification import makeClassification
 from routes.getAverages import getAverages
 from routes.getLeagueLeaders import getLeagueLeaders
+from routes.getAllPitchers import getAllPitchers
 db = SQLAlchemy()
 def createApp(): 
     app = Flask(__name__)
     CORS(app)
-    
     app.config.from_object(ConfigORM)
     db.init_app(app)
     app.register_blueprint(myRoute, url_prefix='/api')
@@ -31,10 +31,8 @@ def createApp():
     app.register_blueprint(makeClassification, url_prefix = '/api')
     app.register_blueprint(getAverages, url_prefix = "/api")
     app.register_blueprint(getLeagueLeaders, url_prefix="/api")
+    app.register_blueprint(getAllPitchers, url_prefix="/api")
     
-
-
-
     with app.app_context(): 
         from models.schema import Player, Pitch 
         db.create_all()

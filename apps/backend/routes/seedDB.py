@@ -70,8 +70,8 @@ def parseFile():
         else: 
             names.append(pitcherName)
         handedness = pitch[5]    
-        team = pitch[4] + pitch[3]     
-        newPlayer = Player(playerID = playerID, name = pitcherName, handedness = handedness, team = team)
+        team = pitch[4] + ' ' +  pitch[3]     
+        newPlayer = Player(playerID = playerID, pitcherName = pitcherName, handedness = handedness, team = team)
         db.session.add(newPlayer)
     db.session.commit()
     i = 0

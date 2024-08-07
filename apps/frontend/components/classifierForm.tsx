@@ -27,11 +27,11 @@ const ClassifierForm = () => {
         e.preventDefault(); 
         console.log("eegeeekeeey"); 
         const data =  await axios.post('/api/makeClassification', {
-            "velocity": velocity, 
-            "z-break": zbreak, 
-            "rise": rise, 
-            "tail": tail,
-            "x-break":xbreak
+            "velocity": parseFloat(velocity!), 
+            "z-break": parseFloat(zbreak!), 
+            "rise": parseFloat(rise!), 
+            "tail": parseFloat(tail!),
+            "x-break":parseFloat(xbreak!)
         }); 
         console.log("the data is", data)
         setPitch(data.data['result'][0]); 

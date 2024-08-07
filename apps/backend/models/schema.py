@@ -3,7 +3,7 @@ from server import db
 class Pitch(db.Model):
     __tablename__ = "Pitch"
     pitchID = db.Column(db.Integer, primary_key = True)
-    pitcherName = db.Column(db.String(100), db.ForeignKey('Player.name'))
+    pitcherName = db.Column(db.String(100), db.ForeignKey('Player.pitcherName'))
     velocity = db.Column(db.Float )
     pitchBreakZ = db.Column(db.Float)
     rise = db.Column(db.Float)
@@ -26,7 +26,7 @@ class Pitch(db.Model):
 class Player(db.Model):
     __tablename__ = "Player"
     playerID = db.Column(db.Integer, unique=True, primary_key = True)
-    name = db.Column(db.String, unique = True)
+    pitcherName = db.Column(db.String, unique = True)
     handedness = db.Column(db.String)
     team = db.Column(db.String)
     pitches = db.relationship('Pitch', backref='Player')
@@ -36,8 +36,9 @@ class Player(db.Model):
     def toDict(self): 
         return{
             "playerID": self.playerID, 
-            "name": self.name, 
-            "handedness": self.handedness
+            "pitcherName": self.pitcherName, 
+            "handedness": self.handedness, 
+            "team": self.team
         }
     
     

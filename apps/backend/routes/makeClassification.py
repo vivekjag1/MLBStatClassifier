@@ -6,6 +6,7 @@ with open('./ML/classifier.pkl', "rb") as f:
 @makeClassification.route('/makeClassification', methods = ['POST'])
 def handler(): 
     req = request.json
+    print(req)
     input = [req['velocity'], req['z-break'], req['rise'], req['x-break'], req['tail']]
     res =  model.predict([input])
     retVal =  [int(item) for item in res]
