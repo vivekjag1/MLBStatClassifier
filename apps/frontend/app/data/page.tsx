@@ -38,7 +38,7 @@ export default   function Page(){
         <div className = " font-mono text-3xl">
        
 
-            <div className="container mx-auto py-10 font-serif items-center justify-center">
+            <div className="container mx-auto py-10 font-mono items-center justify-center">
             <Tabs defaultValue="account" className="items-center justify-center ">
             <TabsList>
                 <TabsTrigger value="account">Pitches</TabsTrigger>

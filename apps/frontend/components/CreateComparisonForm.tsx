@@ -39,7 +39,6 @@ const CreateComparisonForm = (props:props) => {
         const makeRequest = async () => {
             const data = await axios.get('/api/getPitcherNames'); 
             setPlayerList(data.data); 
-            console.log("the data is" , data.data); 
             return data.data
         }
         if(!fetched){
@@ -77,9 +76,9 @@ const CreateComparisonForm = (props:props) => {
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            {playerList.map((player) =>{
+                            {playerList.map((player, index) =>{
                                 return(
-                                    <SelectItem className = "font-serif text-black" value = {player}>{player}</SelectItem>
+                                    <SelectItem key = {index} className = "font-mono text-black" value = {player}>{player}</SelectItem>
                                 )
                             })}
                         </SelectGroup>
@@ -92,9 +91,9 @@ const CreateComparisonForm = (props:props) => {
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            {playerList.map((player) =>{
+                            {playerList.map((player, index) =>{
                                 return(
-                                    <SelectItem className = "font-serif text-black" value = {player}>{player}</SelectItem>
+                                    <SelectItem key = {index} className = "font-mono text-black" value = {player}>{player}</SelectItem>
                                 )
                             })}
                         </SelectGroup>

@@ -21,7 +21,7 @@ const ComparisonModal = (props:ModalProps)  =>{
         <>
             <Dialog open={props.open} onOpenChange={(isOpen) => {if(props.open) props.handleClose()}}>
                 <DialogContent>
-                    <DialogHeader className = "flex items-center font-black font-serif text-3xl">
+                    <DialogHeader className = "flex items-center font-black font-mono text-3xl">
                         <DialogTitle className="text-3xl">Create a comparison</DialogTitle>
                         <DialogDescription className = "text-sm text-center font-black">Compare players based on velocity, movement, and more</DialogDescription>
                     </DialogHeader>

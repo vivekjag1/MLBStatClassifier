@@ -12,7 +12,7 @@ def parseFile():
             "message":"Database is already seeded!"
         }
         return message 
-    with open('./data/allPitchMovement24.csv') as f: 
+    with open('./data/allPitchMovement24.csv',  encoding='utf-8') as f: 
         allPitches = [i for i in f.readlines() if i!=',']
     allPitches = np.array(allPitches)
     allPitches = allPitches[1:]

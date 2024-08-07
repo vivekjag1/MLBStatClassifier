@@ -33,7 +33,6 @@ const Page = () => {
             const leaders = await axios.get('/api/getLeagueLeaders'); 
             setLeadersNames(leaders.data['players'])
             setLeadersStats(leaders.data['stats']); 
-            console.log("EEEEEEEEEEEEEE", leaders)
         }
         if(!fetched){
             fetchAverages().then(); 
@@ -47,7 +46,6 @@ const Page = () => {
     const pitches:string[] = ["4-Seam Fastball", "Changeup",  "Curveball","Cutter","Sinker", "Split-Finger", "Sweeper", "Slurve" ]
     useEffect(() =>{
        
-        console.log("fml")
         if(pitch == -1 || pitch == undefined){
             setPitchString("No Pitch!")
         }

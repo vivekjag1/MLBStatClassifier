@@ -21,7 +21,6 @@ interface Props{
 export function PitchProvider(props:Props){
     const [pitch, setPitch] = useState<number>(-1); 
     const setPitchEvent = (value:number) =>{
-        console.log("i hate everything"); 
         setPitch(value)
     }
     const value:PitchContextType = {

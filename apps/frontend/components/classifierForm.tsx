@@ -25,7 +25,6 @@ const ClassifierForm = () => {
 
     const handleSubmit = async(e: React.SyntheticEvent) =>{
         e.preventDefault(); 
-        console.log("eegeeekeeey"); 
         const data =  await axios.post('/api/makeClassification', {
             "velocity": parseFloat(velocity!), 
             "z-break": parseFloat(zbreak!), 
@@ -33,14 +32,12 @@ const ClassifierForm = () => {
             "tail": parseFloat(tail!),
             "x-break":parseFloat(xbreak!)
         }); 
-        console.log("the data is", data)
         setPitch(data.data['result'][0]); 
 
 
 
         const types:string[] = ["4-Seam Fastball","Changeup", "Curveball","Cutter", "Sinker", "Slider",  "Split-Finger", "Sweeper",  "Slurve" ]; 
-        // const pitchType = types[data.data]
-        // console.log("eee", pitchType)
+
     }
     return (
         <PitchProvider>
