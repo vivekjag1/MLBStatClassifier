@@ -34,11 +34,15 @@ class Player(db.Model):
     def __repr__(self):
         return f'<Pitcher {self.name}>'
     def toDict(self): 
+        # pitches = []
+        # for pitch in self.pitches: 
+        #     pitches.append(pitch.toDict())
+
         return{
             "playerID": self.playerID, 
             "pitcherName": self.pitcherName, 
             "handedness": self.handedness, 
-            "team": self.team
+            "team": self.team,
         }
     
     

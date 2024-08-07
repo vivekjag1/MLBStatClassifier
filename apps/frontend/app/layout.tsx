@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/navbar";
 import { PitchProvider } from "@/contexts/pitchContext";
-
+import { ComparisonProvider } from "@/contexts/comparisonContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,10 +23,12 @@ export default function RootLayout({
    
     <html lang="en">
       <body className={inter.className}>
+        <ComparisonProvider>
         <PitchProvider>
         { <NavBar/>}
         <main>{children}</main>
         </PitchProvider>
+        </ComparisonProvider>
 
         </body>
     </html>

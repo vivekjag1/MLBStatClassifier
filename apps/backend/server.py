@@ -15,6 +15,7 @@ from routes.makeClassification import makeClassification
 from routes.getAverages import getAverages
 from routes.getLeagueLeaders import getLeagueLeaders
 from routes.getAllPitchers import getAllPitchers
+from routes.getPitcherNames import getPitcherNames
 db = SQLAlchemy()
 def createApp(): 
     app = Flask(__name__)
@@ -32,6 +33,7 @@ def createApp():
     app.register_blueprint(getAverages, url_prefix = "/api")
     app.register_blueprint(getLeagueLeaders, url_prefix="/api")
     app.register_blueprint(getAllPitchers, url_prefix="/api")
+    app.register_blueprint(getPitcherNames, url_prefix = "/api")
     
     with app.app_context(): 
         from models.schema import Player, Pitch 

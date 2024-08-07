@@ -33,34 +33,7 @@ def parseFile():
         splitArray.append(thisRow[1:])
     #now we need to make a list of all the pitchers 
     pitchArray = np.array(splitArray.copy())
-    '''
-    
-    [
-        "Greene",
-        "Hunter",
-        "668881",
-        "Reds",
-        "CIN",
-        "R",
-        "97.7",
-        "1187",
-        "2139",
-        "19.80555556",
-        "0.554932211",
-        "FF",
-        "4-Seam Fastball",
-        "12.2",
-        "-12.7",
-        "0.6",
-        "4",
-        "8.8",
-        "-7.6",
-        "1.2",
-        "16",
-        "0.681818182",
-        "0.648989899"
-    ],
-    '''
+
     names = []
     for pitch in pitchArray:
         pitcherName =  pitch[1] + ' ' + pitch[0]
@@ -75,6 +48,7 @@ def parseFile():
         db.session.add(newPlayer)
     db.session.commit()
     i = 0
+    pitcherNames = np.zeros((455)) 
     for pitch in pitchArray:
         pitcherName =  pitch[1] + ' ' + pitch[0]
         velocity = pitch[6]
