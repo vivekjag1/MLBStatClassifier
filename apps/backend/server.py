@@ -16,12 +16,15 @@ from routes.getAverages import getAverages
 from routes.getLeagueLeaders import getLeagueLeaders
 from routes.getAllPitchers import getAllPitchers
 from routes.getPitcherNames import getPitcherNames
+from flask_migrate import Migrate
 db = SQLAlchemy()
+migrate = Migrate()
 def createApp(): 
     app = Flask(__name__)
     CORS(app)
     app.config.from_object(ConfigORM)
     db.init_app(app)
+    migrate.init_app(app, db)
     app.register_blueprint(myRoute, url_prefix='/api')
     app.register_blueprint(exampleRoute, url_prefix='/api')
     app.register_blueprint(seedDatabase, url_prefix='/api')
