@@ -1,6 +1,6 @@
 ## MLB Stat Classifier - A machine learning application for better understanding the MLB, developed by Vivek Jagadeesh
 <img src = "apps/common/hero.png">
-Note - This readme serves a "user manual" for this application. A detailed explanation of my experience developing the application (along with other projects), and the construction of the technology stack is available at <a href="https://vivekjagadeesh.com">vivekjagadeesh.com</a>. 
+Note - This readme serves a "user manual" for this application. A detailed explanation of my experience developing the application (along with other projects), and the construction of the technology stack is available at <a href="https://vivekjagadeesh.com/MLBClassifier">vivekjagadeesh.com/MLBClassifier</a>. 
 
 <h2>Overview and Motivation</h2>
 <p>
